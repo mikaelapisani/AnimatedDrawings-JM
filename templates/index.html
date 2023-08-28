@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Jugar Mundos</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+   </head>
+
+<body>        
+        <div  class="winner">
+           <img src="static/output/video.gif" alt="">
+        </div>
+        <div>
+        <div class="buttondiv">
+             <form action = "/subir_imagen" method = "post" enctype="multipart/form-data">  
+                <input type="file" name="file" class="file"/>  
+                <input type = "submit" class="button" value="Subir Imagen">  
+            </form>  
+        </div>
+</body>    
+
+</html>

@@ -1,0 +1,8 @@
+controller:
+  MODE: video_render
+  OUTPUT_VIDEO_PATH: /Users/mika/Projects/AnimatedDrawings/static/output/video.gif
+scene:
+  ANIMATED_CHARACTERS:
+  - character_cfg: /Users/mika/Projects/AnimatedDrawings/static/output/char_cfg.yaml
+    motion_cfg: /Users/mika/Projects/AnimatedDrawings/config/motion/dab.yaml
+    retarget_cfg: /Users/mika/Projects/AnimatedDrawings/config/retarget/fair1_ppf.yaml

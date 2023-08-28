@@ -1,0 +1,76 @@
+html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
+
+
+body {
+   margin: 0px;
+   min-height: 100%;
+   width: 100%;
+  font-family: Monospace;
+  text-align: center;
+  background: url('JM.gif') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+}
+
+.winner {
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 25%;
+  left: 32%;
+  font-size: 40px;
+  color: white;
+}
+
+.buttondiv {
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 80%;
+  left: 25%;
+  font-size: 40px;
+  color: white;
+}
+
+
+
+.file {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+

@@ -1,0 +1,15 @@
+1.    git clone https://github.com/facebookresearch/AnimatedDrawings.git
+    cd AnimatedDrawings
+    pip install -e .
+ 
+2. pip3 install pyyaml Pillow numpy opencv-python pyopengl scikit-image shapely scikit-learn glfw requests
+
+3. build and run docker / modify to 16 GB 
+
+4. cp -r examples/* . 
+
+5. python3.8 image_to_animation.py IMG_4178.jpg output 
+
+6. result at output/video.gif 
+ 
+
