@@ -8,15 +8,25 @@
 
 <body>        
         <div  class="winner">
-           <img src="static/output/video.gif" alt="">
-        </div>
+            {% if gif : %}
+                <img id="picture" src="static/output/video.gif" alt="gif">
+                <div class="buttondiv">
+                <form action="/next" method="post">
+                    <button type="submit" class="button" >Tomar otra foto</button>
+                </form>
+                </div>
+
+            {% else %}
+            <img id="video_feed" src="{{ url_for('video_feed') }}">
+                <div class="buttondiv">
+                    <form action="/capture" method="post">
+                        <button type="submit" class="button" >Capturar Foto</button>
+                    </form>
+                   
+                </div>
+            {% endif %} 
         <div>
-        <div class="buttondiv">
-             <form action = "/subir_imagen" method = "post" enctype="multipart/form-data">  
-                <input type="file" name="file" class="file"/>  
-                <input type = "submit" class="button" value="Subir Imagen">  
-            </form>  
-        </div>
+        
 </body>    
 
 </html>

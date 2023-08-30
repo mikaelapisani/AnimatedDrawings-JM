@@ -5,31 +5,54 @@ from flask import *
 import subprocess
 import time
 import shutil
-
+import cv2
+import os
 
 
 app = Flask(__name__)
-app.jinja_env.auto_reload = True
-app.config["TEMPLATES_AUTO_RELOAD"] = True
+video = cv2.VideoCapture(2)  
+gif = False
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    global gif
+    return render_template('index.html', gif=gif)
 
+def gen(video):
+    while True:
+        success, image = video.read()
+        ret, jpeg = cv2.imencode('.jpg', image)
+        frame = jpeg.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
-@app.route('/subir_imagen', methods=['POST'])
-def character():
-    if request.method == 'POST':  
-        f = request.files['file']
-        f.save('image.png')
-        # ts stores the time in seconds
-        ts = str(time.time())
-        shutil.copy('image.png', f'images/{ts}.png')
-        p = subprocess.run(["python3.8", "image_to_animation.py", "image.png", 'static/output'])
-        shutil.copy('static/output/video.gif', f'videos/{ts}.gif')
-    
-    return render_template('index.html')
+@app.route('/video_feed')
+def video_feed():
+    global video
+    global gif
+    return Response(gen(video), mimetype='multipart/x-mixed-replace; boundary=frame')
    
+@app.route('/next',methods=['POST'])
+def next():
+    global saving_video
+    global gif
+    gif = False
+    return render_template('index.html', gif=gif)
+
+@app.route('/capture',methods=['POST'])
+def capture():
+    global video
+    global gif
+    gif = True
+    success, image = video.read()
+    cv2.imwrite("image.png", image)
+    ts = str(time.time())
+    shutil.copy('image.png', f'images/{ts}.png')
+    p = subprocess.run(["python3.8", "image_to_animation.py", "image.png", 'static/output'])
+    shutil.copy('static/output/video.gif', f'videos/{ts}.gif')
+    return render_template('index.html', gif=gif)
+
+
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5001, threaded=True)
